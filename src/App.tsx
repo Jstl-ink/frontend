@@ -11,16 +11,16 @@ export default function App() {
         pageApi.getPageById({pageId: "Arrgh!"}).then(value => setPage(value))
     }, [])
 
-    console.log(page.img)
+    console.log(page.links)
 
     return (
         <MantineProvider>
             <main className="p-10 h-screen bg-gray-700">
-                <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card radius="md" withBorder>
                     <Card.Section component="a" href="https://mantine.dev/">
                         <Image
                             src={page.img}
-                            height={160}
+                            h={200}
                             alt={page.id}
                         />
                     </Card.Section>
