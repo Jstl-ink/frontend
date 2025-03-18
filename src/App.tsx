@@ -6,12 +6,9 @@ export default function App() {
     const pageApi = new PageApi()
     const [page, setPage] = useState({} as Page);
 
-
     useEffect(() => {
-        pageApi.getPageById({pageId: "Arrgh!"}).then(value => setPage(value))
+        pageApi.getPageById({pageId: decodeURI(window.location.pathname)}).then(value => setPage(value))
     }, [])
-
-    console.log(page.links)
 
     return (
         <main>
