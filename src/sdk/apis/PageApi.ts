@@ -46,6 +46,7 @@ export class PageApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+        console.log(headerParameters)
 
         const response = await this.request({
             path: `/{pageId}`.replace(`{${"pageId"}}`, encodeURIComponent(String(requestParameters['pageId']))),

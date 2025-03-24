@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface Link {
     /**
+     * 
+     * @type {number}
+     * @memberof Link
+     */
+    id: number;
+    /**
      * alias for link
      * @type {string}
      * @memberof Link
@@ -37,6 +43,7 @@ export interface Link {
  * Check if a given object implements the Link interface.
  */
 export function instanceOfLink(value: object): value is Link {
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('link' in value) || value['link'] === undefined) return false;
     return true;
@@ -52,6 +59,7 @@ export function LinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): Link
     }
     return {
         
+        'id': json['id'],
         'name': json['name'],
         'link': json['link'],
     };
@@ -68,6 +76,7 @@ export function LinkToJSONTyped(value?: Link | null, ignoreDiscriminator: boolea
 
     return {
         
+        'id': value['id'],
         'name': value['name'],
         'link': value['link'],
     };

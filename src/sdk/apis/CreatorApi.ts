@@ -15,10 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
+  CreatePageRequest,
   Link,
   Page,
 } from '../models/index';
 import {
+    CreatePageRequestFromJSON,
+    CreatePageRequestToJSON,
     LinkFromJSON,
     LinkToJSON,
     PageFromJSON,
@@ -27,17 +30,14 @@ import {
 
 export interface CreateLinkByPageIdRequest {
     pageId: string;
+    body: Link;
 }
 
-export interface CreatePageRequest {
-    body?: string;
+export interface CreatePageOperationRequest {
+    body: CreatePageRequest;
 }
 
 export interface DeletePageByPageIdRequest {
-    pageId: string;
-}
-
-export interface GetCreatorPageByIdRequest {
     pageId: string;
 }
 
@@ -45,14 +45,14 @@ export interface LogoutUserRequest {
     pageId: string;
 }
 
-export interface UpdateLinkByPageIdRequest {
+export interface UpdatePageByPageIdRequest {
     pageId: string;
-    link?: Link;
+    body: Page;
 }
 
 export interface UpdateSocialLinkByPageIdRequest {
     pageId: string;
-    body?: Link;
+    body: Link;
 }
 
 /**
@@ -71,9 +71,18 @@ export class CreatorApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling createLinkByPageId().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -88,6 +97,7 @@ export class CreatorApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: LinkToJSON(requestParameters['body']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LinkFromJSON(jsonValue));
@@ -104,7 +114,14 @@ export class CreatorApi extends runtime.BaseAPI {
     /**
      * Create new user page
      */
-    async createPageRaw(requestParameters: CreatePageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Page>> {
+    async createPageRaw(requestParameters: CreatePageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Page>> {
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling createPage().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -124,7 +141,7 @@ export class CreatorApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['body'] as any,
+            body: CreatePageRequestToJSON(requestParameters['body']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PageFromJSON(jsonValue));
@@ -133,7 +150,7 @@ export class CreatorApi extends runtime.BaseAPI {
     /**
      * Create new user page
      */
-    async createPage(requestParameters: CreatePageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Page> {
+    async createPage(requestParameters: CreatePageOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Page> {
         const response = await this.createPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -179,47 +196,6 @@ export class CreatorApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the creator page
-     */
-    async getCreatorPageByIdRaw(requestParameters: GetCreatorPageByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Page>> {
-        if (requestParameters['pageId'] == null) {
-            throw new runtime.RequiredError(
-                'pageId',
-                'Required parameter "pageId" was null or undefined when calling getCreatorPageById().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/creator/{pageId}`.replace(`{${"pageId"}}`, encodeURIComponent(String(requestParameters['pageId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => PageFromJSON(jsonValue));
-    }
-
-    /**
-     * Get the creator page
-     */
-    async getCreatorPageById(requestParameters: GetCreatorPageByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Page> {
-        const response = await this.getCreatorPageByIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Logout user from creator page
      */
     async logoutUserRaw(requestParameters: LogoutUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -252,13 +228,20 @@ export class CreatorApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a link on user page
+     * Update page details of user page
      */
-    async updateLinkByPageIdRaw(requestParameters: UpdateLinkByPageIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Link>> {
+    async updatePageByPageIdRaw(requestParameters: UpdatePageByPageIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Page>> {
         if (requestParameters['pageId'] == null) {
             throw new runtime.RequiredError(
                 'pageId',
-                'Required parameter "pageId" was null or undefined when calling updateLinkByPageId().'
+                'Required parameter "pageId" was null or undefined when calling updatePageByPageId().'
+            );
+        }
+
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling updatePageByPageId().'
             );
         }
 
@@ -281,17 +264,17 @@ export class CreatorApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: LinkToJSON(requestParameters['link']),
+            body: PageToJSON(requestParameters['body']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => LinkFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PageFromJSON(jsonValue));
     }
 
     /**
-     * Update a link on user page
+     * Update page details of user page
      */
-    async updateLinkByPageId(requestParameters: UpdateLinkByPageIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Link> {
-        const response = await this.updateLinkByPageIdRaw(requestParameters, initOverrides);
+    async updatePageByPageId(requestParameters: UpdatePageByPageIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Page> {
+        const response = await this.updatePageByPageIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -303,6 +286,13 @@ export class CreatorApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'pageId',
                 'Required parameter "pageId" was null or undefined when calling updateSocialLinkByPageId().'
+            );
+        }
+
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling updateSocialLinkByPageId().'
             );
         }
 
