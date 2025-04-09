@@ -2,6 +2,7 @@ apis/CreatorApi.ts
 apis/PageApi.ts
 apis/index.ts
 index.ts
+models/CreatePageRequest.ts
 models/Link.ts
 models/Page.ts
 models/index.ts
