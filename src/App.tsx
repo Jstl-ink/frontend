@@ -1,9 +1,9 @@
-import {Page, PageApi} from "./sdk";
+import {Configuration, Page, PageApi} from "./sdk";
 import {useEffect, useState} from "react";
 import NotFound from "./NotFound.tsx";
 
 export default function App() {
-    const pageApi = new PageApi()
+    const pageApi = new PageApi(new Configuration({basePath: 'https://api.jstl.ink.paulus.rocks'}))
     const [page, setPage] = useState<Page>();
     const [error, setError] = useState(false);
 
