@@ -1,6 +1,6 @@
 [phases.build]
 cmds = [
   "...",
-  "cp ./default.conf /etc/nginx/conf.d/default.conf",
+  "cp ./default.conf /etc/nginx/conf.d/",
   "echo 'default.conf replaced successfully'"
 ]
