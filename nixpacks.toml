@@ -1,8 +1,0 @@
-[phases.start]
-cmds = [
-  "...",
-  "mkdir -p /etc/nginx/conf.d",
-  "cp default.conf /etc/nginx/conf.d/default.conf",
-  "echo 'default.conf replaced successfully'",
-  "exec nginx -g 'daemon off;'"
-]
