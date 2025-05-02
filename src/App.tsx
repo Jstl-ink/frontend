@@ -9,10 +9,7 @@ export default function App() {
 
     useEffect(() => {
         pageApi.getPageById({pageId: decodeURI(window.location.pathname.slice(1))})
-            .then(value => {
-                setPage(value)
-                document.title = page.name
-            })
+            .then(value => setPage(value))
             .catch(() => setError(true));
     }, [])
 
