@@ -38,7 +38,7 @@ export default function LandingPage() {
                     <div className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12 border-slate-500 border-2">
                         <iframe
                             className="rounded-lg  h-full w-full object-cover object-center overflow-hidden"
-                            src="http://localhost:5173/6814f39872818d40c15b6fe5"></iframe>
+                            src="https://jstl.ink.paulus.rocks/6814f39872818d40c15b6fe5"></iframe>
                     </div>
                 </section>
 
