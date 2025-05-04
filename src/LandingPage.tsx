@@ -45,7 +45,7 @@ export default function LandingPage() {
                 <section
                     className="flex flex-col items-center justify-between gap-10 border-t pt-8 lg:flex-row lg:gap-8">
                     <div className="-mx-6 grid grid-cols-2 gap-4 md:-mx-8 md:flex md:divide-x">
-                        {[["100%", "Free"], ["Unlimited", "Links"], ["2+", "Customers"]].map(item => (
+                        {[["100%", "Free"], ["Unlimited", "Links"], ["2+", "Users"]].map(item => (
                             <div className="px-6 md:px-8">
                             <span
                                 className="block text-center text-lg font-bold md:text-left md:text-xl">{item[0]}</span>
