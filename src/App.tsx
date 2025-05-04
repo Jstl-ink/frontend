@@ -1,22 +1,28 @@
 import {Configuration, Page, PageApi} from "./sdk";
 import {useEffect, useState} from "react";
 import NotFound from "./NotFound.tsx";
+import LandingPage from "./LandingPage.tsx";
 
 export default function App() {
     const pageApi = new PageApi(new Configuration({basePath: 'https://api.jstl.ink.paulus.rocks'}))
     const [page, setPage] = useState<Page>();
     const [error, setError] = useState(false);
+    const [showLanding, setShowLanding] = useState(true);
 
     useEffect(() => {
-        pageApi.getPageById({pageId: decodeURI(window.location.pathname.slice(1))})
-            .then(value => setPage(value))
-            .catch(() => setError(true));
+        if (window.location.pathname.slice(1)) {
+            setShowLanding(false);
+            pageApi.getPageById({pageId: decodeURI(window.location.pathname.slice(1))})
+                .then(value => setPage(value))
+                .catch(() => setError(true));
+        }
     }, [])
 
     return (
         <main>
-            {error ? <NotFound/> :
-                <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+            {showLanding ? <LandingPage />
+            : error ? <NotFound/> :
+                <div className="min-h-screen flex flex-col items-center p-4">
                     <img
                         className="fit-picture"
                         src={page?.img}
