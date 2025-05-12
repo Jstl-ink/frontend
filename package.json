@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate-api-client -y && tsc -b && vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-api-client": "npx @openapitools/openapi-generator-cli generate -i https://raw.githubusercontent.com/Jstl-ink/backend/refs/heads/main/api.yaml -g typescript-fetch -o src/sdk"
