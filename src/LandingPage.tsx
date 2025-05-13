@@ -1,6 +1,8 @@
-import { IconBrandGithub, IconChevronRight } from '@tabler/icons-react';
+import {IconBrandGithub, IconChevronRight} from '@tabler/icons-react';
+const handle = import.meta.env.VITE_SHOWCASE_PAGE_HANDLE
 
 export default function LandingPage() {
+
     return (
         <div className=" pb-6 sm:pb-8 lg:pb-12">
             <div className="mx-auto max-w-screen-2xl px-8 md:px-8">
@@ -14,9 +16,11 @@ export default function LandingPage() {
                 <section className="mb-8 flex flex-col justify-around gap-6 md:mb-16 lg:flex-row">
                     <div className="flex flex-col justify-center text-center lg:py-12 lg:text-left xl:w-5/12">
 
-                        <h1 className="mb-4 text-4xl font-bold sm:text-5xl md:mb-6 md:text-6xl">The bio link reinvented<br />  - dramatically.</h1>
+                        <h1 className="mb-4 text-4xl font-bold sm:text-5xl md:mb-6 md:text-6xl">The bio link
+                            reinvented<br/> - dramatically.</h1>
 
-                        <p className="mb-8 italic font-semibold text-gray-500 md:mb-12 md:text-lg xl:text-xl">You're welcome.</p>
+                        <p className="mb-8 italic font-semibold text-gray-500 md:mb-12 md:text-lg xl:text-xl">You're
+                            welcome.</p>
 
                         <div className="flex gap-2.5 justify-center lg:justify-start">
                             <a href="/creator"
@@ -29,24 +33,25 @@ export default function LandingPage() {
                                 <span
                                     className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950/90 px-6 py-4 md:text-2xl font-medium text-white backdrop-blur-3xl gap-2">
                                     Create your page
-                                    <IconChevronRight />
+                                    <IconChevronRight/>
                                 </span>
                             </a>
                         </div>
                     </div>
 
-                    <div className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12 border-slate-500 border-2">
+                    <div
+                        className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12 border-slate-500 border-2">
                         <iframe
                             className="rounded-lg  h-full w-full object-cover object-center overflow-hidden"
-                            src="https://jstl.ink.paulus.rocks/6814f39872818d40c15b6fe5"></iframe>
+                            src={"https://jstl.ink.paulus.rocks/" + handle}></iframe>
                     </div>
                 </section>
 
                 <section
                     className="flex flex-col items-center justify-between gap-10 border-t pt-8 lg:flex-row lg:gap-8">
                     <div className="-mx-6 grid grid-cols-2 gap-4 md:-mx-8 md:flex md:divide-x">
-                        {[["100%", "Free"], ["Unlimited", "Links"], ["2+", "Users"]].map(item => (
-                            <div className="px-6 md:px-8">
+                        {[["100%", "Free"], ["Unlimited", "Links"], ["2+", "Users"]].map((item, index) => (
+                            <div key={index} className="px-6 md:px-8">
                             <span
                                 className="block text-center text-lg font-bold md:text-left md:text-xl">{item[0]}</span>
                                 <span
@@ -59,7 +64,7 @@ export default function LandingPage() {
                         <div className="flex gap-4">
                             <a href="https://github.com/Jstl-ink" target="_blank"
                                className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
-                                <IconBrandGithub stroke={2} />
+                                <IconBrandGithub stroke={2}/>
                             </a>
                         </div>
                     </div>

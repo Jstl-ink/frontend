@@ -12,9 +12,9 @@ export default function App() {
     useEffect(() => {
         if (window.location.pathname.slice(1)) {
             setShowLanding(false);
-            pageApi.getPageById({pageId: decodeURI(window.location.pathname.slice(1))})
+            pageApi.getPageByHandle({handle: decodeURI(window.location.pathname.slice(1))})
                 .then(value => setPage(value))
-                .catch(() => setError(true));
+                .catch((v) => {setError(true); console.log(v)});
         }
     }, [])
 
