@@ -1,5 +1,5 @@
 import {
-    IconBrandFacebook,
+    IconBrandFacebook, IconBrandHbo,
     IconBrandInstagram,
     IconBrandLinkedin,
     IconBrandThreads,
@@ -80,6 +80,8 @@ function getSocialIcon(name: string) {
             return <IconBrandFacebook size={46} stroke={1.5}/>;
         case 'threads':
             return <IconBrandThreads size={46} stroke={1.5}/>;
+        case 'hbo':
+            return <IconBrandHbo size={46} stroke={1.5}/>;
         default:
             return <IconWorld size={46} stroke={1.5}/>;
     }
