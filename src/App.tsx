@@ -24,6 +24,6 @@ export default function App() {
     } else if(error){
         return <NotFound />
     } else {
-        return <LinkTreePage />
+        return <LinkTreePage page={page} />
     }
 }
