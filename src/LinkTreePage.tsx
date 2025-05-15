@@ -65,16 +65,16 @@ export default function LinkTreePage({page}: LinkTreePageProps) {
 function getSocialIcon(name: string) {
     switch (name.toLowerCase()) {
         case 'instagram':
-            return <IconBrandInstagram size={46}/>;
+            return <IconBrandInstagram size={46} stroke={1.5}/>;
         case 'twitter':
-            return <IconBrandTwitter size={46}/>;
+            return <IconBrandTwitter size={46} stroke={1.5}/>;
         case 'linkedin':
-            return <IconBrandLinkedin size={46}/>;
+            return <IconBrandLinkedin size={46} stroke={1.5}/>;
         case 'facebook':
-            return <IconBrandFacebook size={46}/>;
+            return <IconBrandFacebook size={46} stroke={1.5}/>;
         case 'threads':
-            return <IconBrandThreads size={46}/>;
+            return <IconBrandThreads size={46} stroke={1.5}/>;
         default:
-            return <IconWorld size={46}/>;
+            return <IconWorld size={46} stroke={1.5}/>;
     }
 }
