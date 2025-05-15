@@ -1,11 +1,17 @@
 import {IconBrandInstagram} from '@tabler/icons-react';
 import {Page} from "./sdk";
+import {useEffect} from "react";
+import {useMounted} from "@mantine/hooks";
 
 interface LinkTreePageProps {
     page: Page
 }
 
 export default function LinkTreePage({page}: LinkTreePageProps) {
+    useEffect(() => {
+        document.title = page?.name || page?.handle || 'Jstl.ink';
+    }, [page]);
+
     return (
         <div className="min-h-screen text-white flex flex-col items-center font-sans">
             {page?.img && <img
