@@ -1,8 +1,9 @@
 import {
-    IconBrandFacebook, IconBrandHbo,
+    IconBrandDiscordFilled,
+    IconBrandFacebook, IconBrandGithub, IconBrandHbo,
     IconBrandInstagram,
-    IconBrandLinkedin,
-    IconBrandThreads,
+    IconBrandLinkedin, IconBrandLinkedinFilled, IconBrandReddit, IconBrandSpotifyFilled,
+    IconBrandThreads, IconBrandX, IconBrandYoutubeFilled, IconMail,
     IconWorld
 } from '@tabler/icons-react';
 import {IconBrandTwitter} from "@tabler/icons-react";
@@ -69,20 +70,32 @@ export default function LinkTreePage({page}: LinkTreePageProps) {
 }
 
 function getSocialIcon(name: string) {
+    const props = {size: "34", strokeWidth: "1.5"};
+
     switch (name.toLowerCase()) {
         case 'instagram':
-            return <IconBrandInstagram size={46} stroke={1.5}/>;
+            return <IconBrandInstagram {...props}/>;
         case 'twitter':
-            return <IconBrandTwitter size={46} stroke={1.5}/>;
+            return <IconBrandX {...props}/>;
         case 'linkedin':
-            return <IconBrandLinkedin size={46} stroke={1.5}/>;
+            return <IconBrandLinkedin {...props}/>;
         case 'facebook':
-            return <IconBrandFacebook size={46} stroke={1.5}/>;
+            return <IconBrandFacebook {...props}/>;
         case 'threads':
-            return <IconBrandThreads size={46} stroke={1.5}/>;
-        case 'hbo':
-            return <IconBrandHbo size={46} stroke={1.5}/>;
+            return <IconBrandThreads {...props}/>;
+        case 'reddit':
+            return <IconBrandReddit {...props}/>;
+        case 'github':
+            return <IconBrandGithub {...props}/>;
+        case 'spotify':
+            return <IconBrandSpotifyFilled {...props}/>
+        case 'youtube':
+            return <IconBrandYoutubeFilled {...props}/>;
+        case 'discord':
+            return <IconBrandDiscordFilled {...props}/>;
+        case 'mail':
+            return <IconMail {...props}/>
         default:
-            return <IconWorld size={46} stroke={1.5}/>;
+            return <IconWorld {...props}/>;
     }
 }
