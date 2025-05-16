@@ -40,7 +40,7 @@ export default function LandingPage() {
                     </div>
 
                     <div
-                        className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12 border-slate-500 border-2">
+                        className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12">
                         <iframe
                             className="rounded-lg  h-full w-full object-cover object-center overflow-hidden"
                             src={"https://jstl.ink.paulus.rocks/" + handle}></iframe>
