@@ -4,7 +4,7 @@ const handle = import.meta.env.VITE_SHOWCASE_PAGE_HANDLE
 export default function LandingPage() {
 
     return (
-        <div className=" pb-6 sm:pb-8 lg:pb-12">
+        <div className="pb-6 sm:pb-8 lg:pb-12">
             <div className="mx-auto max-w-screen-2xl px-8 md:px-8">
                 <header className="mb-8 flex items-center justify-between py-4 md:mb-12 md:py-8 xl:mb-16">
                     <a href="/" className="inline-flex items-center gap-3 text-2xl font-bold md:text-3xl"
@@ -42,7 +42,7 @@ export default function LandingPage() {
                     <div
                         className="h-full w-full lg:w-[70%] rounded-lg overflow-hidden shadow-lg lg:h-96 xl:w-5/12">
                         <iframe
-                            className="rounded-lg  h-full w-full object-cover object-center overflow-hidden"
+                            className="rounded-lg h-full w-full object-cover object-center overflow-hidden"
                             src={"https://jstl.ink.paulus.rocks/" + handle}></iframe>
                     </div>
                 </section>
